@@ -9,7 +9,7 @@ const pool = new Pool({
 	password: process.env.DB_PASSWORD,
 	database: process.env.DB_NAME,
 	ssl: {
-		rejectUnauthorized: true, // Disable certificate validation (not recommended for production)
+		rejectUnauthorized: false,
 	},
 });
 
@@ -22,21 +22,3 @@ pool
 	.catch(err => console.error('❌ Connection error', err.stack));
 
 module.exports = pool;
-
-// const { Pool } = require('pg');
-// require('dotenv').config();
-
-// // Use DB_URL from environment variables
-// const pool = new Pool({
-// 	connectionString: process.env.DB_URL, // Use the DB_URL from the .env file
-// 	ssl: {
-// 		rejectUnauthorized: false, // Add this for Render database SSL connection
-// 	},
-// });
-
-// pool
-// 	.connect()
-// 	.then(() => console.log('✅ Connected to PostgreSQL (Render DB)'))
-// 	.catch(err => console.error('❌ Connection error', err.stack));
-
-// module.exports = pool;
